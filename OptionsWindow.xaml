@@ -1,0 +1,47 @@
+<Window x:Class="Foxmon.OptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Options" Height="400" Width="600"
+        Background="#1a1a2e"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="20">
+        <StackPanel VerticalAlignment="Center">
+
+            <TextBlock Text="⚙️ OPTIONS"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,30"/>
+
+            <!-- Activer sons -->
+            <CheckBox x:Name="ChkSon"
+                      Content="🔊 Activer les sons"
+                      FontSize="18"
+                      Foreground="White"
+                      IsChecked="True"
+                      Margin="0,10"/>
+
+            <!-- Volume -->
+            <TextBlock Text="Volume"
+                       Foreground="White"
+                       Margin="0,20,0,5"/>
+
+            <Slider x:Name="SliderVolume"
+                    Minimum="0"
+                    Maximum="1"
+                    Value="1"
+                    TickFrequency="0.1"
+                    IsSnapToTickEnabled="True"/>
+
+            <!-- Bouton retour -->
+            <Button Content="⬅ Retour"
+                    Width="150"
+                    Height="40"
+                    Margin="0,30,0,0"
+                    HorizontalAlignment="Center"
+                    Click="Retour_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

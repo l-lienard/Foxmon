@@ -1,0 +1,112 @@
+<Window x:Class="Foxmon.CreatePlayerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FoxMon - Créer un personnage" Height="550" Width="900"
+        Background="#1a1a2e"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <!-- Lecteur vidéo intro -->
+        <MediaElement x:Name="IntroVideo"
+                      Source="intro.mp4"
+                      LoadedBehavior="Play"
+                      UnloadedBehavior="Stop"
+                      Stretch="UniformToFill"
+                      MediaEnded="IntroVideo_MediaEnded"/>
+
+        <!-- Panel création (caché au début) -->
+        <Grid x:Name="CreationPanel" Visibility="Collapsed">
+
+            <!-- Fond semi-transparent -->
+            <Border Background="#CC1a1a2e"/>
+
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                <!-- Titre -->
+                <TextBlock Text="✨ CRÉER TON DRESSEUR ✨"
+                           FontSize="28" FontWeight="Bold"
+                           FontFamily="Segoe UI Black"
+                           Foreground="#CC44FF"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,30"/>
+
+                <!-- Nom -->
+                <TextBlock Text="Ton nom :"
+                           Foreground="White" FontSize="16"
+                           Margin="0,0,0,8"/>
+                <TextBox x:Name="NomInput"
+                         FontSize="18" Width="300" Height="40"
+                         Background="#2a2a4e" Foreground="White"
+                         BorderBrush="#CC44FF" BorderThickness="2"
+                         Padding="8,5" CaretBrush="White"/>
+
+                <!-- Choix emoji -->
+                <TextBlock Text="Choisis ton personnage :"
+                           Foreground="White" FontSize="16"
+                           Margin="0,20,0,8"/>
+
+                <WrapPanel x:Name="EmojiPanel"
+                           HorizontalAlignment="Center"
+                           Width="400"
+                           Margin="0,0,0,20"/>
+
+                <!-- Emoji sélectionné -->
+                <TextBlock x:Name="EmojiSelectionne"
+                           Text="Aucun personnage sélectionné"
+                           Foreground="#CC99FF" FontSize="16"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20"/>
+
+                <!-- Bouton Commencer -->
+                <Button x:Name="CommencerBtn"
+                        Content="⚔️ COMMENCER L'AVENTURE"
+                        Width="320" Height="55"
+                        FontSize="18" FontWeight="Bold"
+                        FontFamily="Segoe UI Black"
+                        Foreground="White" Cursor="Hand"
+                        Click="CommencerBtn_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="Bd" CornerRadius="30"
+                                    BorderBrush="#CC99FF" BorderThickness="3">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#CC44FF" Offset="0"/>
+                                        <GradientStop Color="#7700CC" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Bd" Property="Opacity" Value="0.8"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="Bd" Property="Opacity" Value="0.6"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+        </Grid>
+
+        <!-- Chargement -->
+        <Grid x:Name="LoadingPanel" Visibility="Collapsed" Background="#1a1a2e">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="⏳ Chargement..."
+                           FontSize="28" FontWeight="Bold"
+                           FontFamily="Segoe UI Black"
+                           Foreground="#CC44FF"
+                           HorizontalAlignment="Center"/>
+                <ProgressBar x:Name="LoadingBar"
+                             Width="400" Height="20"
+                             Margin="0,20,0,0"
+                             Foreground="#CC44FF"
+                             Background="#2a2a4e"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>
